@@ -21,3 +21,15 @@ Supported formats that will be searched:
   * 0.252 btc
   * .5 btc
   * 13.303 BTC
+
+To turn on conversion, set `convert_strings` to `true` in Settings:
+
+**Package Settings / BitcoinTicker / Settings - Default**
+
+## Donate
+
+If you like this plugin and want to support future updates and development, you can send Bitcoin to the following address:
+
+**1B3PekGBDk4cD8R6NmPoahBaMSSsqTgd52**
+
+Thanks!
