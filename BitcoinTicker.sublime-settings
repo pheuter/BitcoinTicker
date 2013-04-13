@@ -1,0 +1,30 @@
+/*
+    BitcoinTicker default settings
+*/
+{
+    /*
+
+      Supported exchanges:
+
+        1 - Mt.Gox
+        2 - Bitfloor
+
+    */
+
+    "exchange": 1,
+
+    /*
+
+      If enabled, searches the view for a bitcoin amount to convert and
+      replaces string with converted value.
+
+      Supported formats that will be searched:
+
+        1 BTC
+        0.252 btc
+        .5 btc
+        13.303 BTC
+
+    */
+    "convert_strings": false
+}
