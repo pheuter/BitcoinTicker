@@ -10,6 +10,8 @@ BitcoinTicker is a Sublime Text 2 plugin that displays current Bitcoin exchange 
 
 This is the simplest way to get the BitcoinTicker plugin. You can install Package Control from this site: [http://wbond.net/sublime_packages/package_control](http://wbond.net/sublime_packages/package_control)
 
+**Note:** This plugin is currently [pending](https://github.com/wbond/package_control_channel/pull/1269) to be accepted in the main Package Control repository.
+
 ### Using Git
 
 Go to the "Packages" directory and clone this repo:
