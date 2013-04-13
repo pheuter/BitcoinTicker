@@ -26,26 +26,22 @@ class BitcoinTicker(sublime_plugin.EventListener):
       extractions = []
       regions = self.view.find_all(regex, sublime.IGNORECASE, "$1", extractions)
 
-      if len(regions) > 0:
-        region = regions[0]
-        amount = float(extractions[0])
-        exchange_name, btc_in_usd = self.get_current_exchange()
+      added_length = 0
+      for index, region in enumerate(regions):
+        amount = float(extractions[index])
+        btc_in_usd, exchange_name = self.get_current_exchange()
         result = btc_in_usd * amount
 
         edit = self.view.begin_edit()
-        self.view.replace(edit, region, "(%s) $%.2f" % (exchange_name, result))
+        added_length += self.view.insert(edit, region.end() + added_length, " => $%.2f (%s)" % (result, exchange_name))
         self.view.end_edit(edit)
-
-        self.view.sel().clear()
-        self.view.sel().add(self.view.line(region))
-        self.view.show_at_center(region)
 
   def update_status(self):
     """
       Updates the view's status bar with the current exchange rate
     """
 
-    self.view.set_status('btc', "(%s) $%.2f" % self.get_current_exchange())
+    self.view.set_status('btc', "$%.2f (%s)" % self.get_current_exchange())
 
   def get_current_exchange(self):
     """
@@ -56,8 +52,8 @@ class BitcoinTicker(sublime_plugin.EventListener):
         1 - Mt.Gox
         2 - Bitfloor
 
-      Returns a tuple consisting of the exchange name and the current rate of
-      1 bitcoin in USD
+      Returns a tuple consisting of the current exchange rate of 1 bitcoin in USD
+      as well as the name of the exchange.
     """
 
     settings = sublime.load_settings(__name__ + '.sublime-settings')
@@ -79,7 +75,7 @@ class BitcoinTicker(sublime_plugin.EventListener):
       exchange_name = 'Bitfloor'
       btc_in_usd = float(resp['price'])
 
-    return (exchange_name, btc_in_usd)
+    return (btc_in_usd, exchange_name)
 
 
   def on_load(self, view):
