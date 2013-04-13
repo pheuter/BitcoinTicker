@@ -27,9 +27,9 @@ class BitcoinTicker(sublime_plugin.EventListener):
       regions = self.view.find_all(regex, sublime.IGNORECASE, "$1", extractions)
 
       added_length = 0
+      btc_in_usd, exchange_name = self.get_current_exchange()
       for index, region in enumerate(regions):
         amount = float(extractions[index])
-        btc_in_usd, exchange_name = self.get_current_exchange()
         result = btc_in_usd * amount
 
         edit = self.view.begin_edit()
