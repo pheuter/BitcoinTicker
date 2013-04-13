@@ -4,6 +4,38 @@
 
 BitcoinTicker is a Sublime Text 2 plugin that displays current Bitcoin exchange rate in status and converts arbitrary BTC values to USD.
 
+## Installing
+
+### Package Control
+
+This is the simplest way to get the BitcoinTicker plugin. You can install Package Control from this site: [http://wbond.net/sublime_packages/package_control](http://wbond.net/sublime_packages/package_control)
+
+### Using Git
+
+Go to the "Packages" directory and clone this repo:
+
+```sh
+$ git clone https://github.com/pheuter/BitcoinTicker.git
+```
+
+The "Packages" directory is located at:
+
+* OS X:
+
+        ~/Library/Application Support/Sublime Text 2/Packages/
+
+* Linux:
+
+        ~/.config/sublime-text-2/Packages/
+
+* Windows:
+
+        %APPDATA%/Sublime Text 2/Packages/
+
+### Without Git
+
+[Download](https://github.com/pheuter/BitcoinTicker/archive/master.zip) the latest source from [GitHub](https://github.com/pheuter/BitcoinTicker) and copy the BitcoinTicker folder to your "Packages" directory.
+
 ## Usage
 
 After you finish saving a file, the status bar at the bottom of the Sublime Text Editor will automatically update with the latest ticker information depending on the exchange.
