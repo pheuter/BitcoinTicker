@@ -1,6 +1,14 @@
 import sublime
 import sublime_plugin
-import urllib2
+
+try:
+  from urllib.request import urlopen
+  from urllib.parse import urlparse
+  import urllib2
+except ImportError:
+  from urlparse import urlparse
+  from urllib import urlopen
+
 import json
 import re
 
@@ -61,16 +69,16 @@ class BitcoinTicker(sublime_plugin.EventListener):
 
     if exchange == 1:
       url = 'http://data.mtgox.com/api/1/BTCUSD/ticker'
-      req = urllib2.Request(url)
-      resp = json.load(urllib2.urlopen(req))
+      req = urlparse(url)
+      resp = json.load(urlopen(req.geturl()))
 
       exchange_name = 'Mt.Gox'
       btc_in_usd = float(resp['return']['last']['value'])
 
     elif exchange == 2:
       url = 'https://api.bitfloor.com/ticker/1'
-      req = urllib2.Request(url)
-      resp = json.load(urllib2.urlopen(req))
+      req = urlparse(url)
+      resp = json.load(urlopen(req.geturl()))
 
       exchange_name = 'Bitfloor'
       btc_in_usd = float(resp['price'])
@@ -79,9 +87,13 @@ class BitcoinTicker(sublime_plugin.EventListener):
 
 
   def on_load(self, view):
+    self.view = view
+
     settings = sublime.load_settings(__name__ + '.sublime-settings')
     settings.add_on_change('exchange', self.update_status)
     settings.add_on_change('convert_strings', self.check_for_calc)
+
+    sublime.set_timeout(self.update_status, 10)
 
   def on_post_save(self, view):
     self.view = view
