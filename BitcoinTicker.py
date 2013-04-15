@@ -4,7 +4,6 @@ import sublime_plugin
 try:
   from urllib.request import urlopen
   from urllib.parse import urlparse
-  import urllib2
 except ImportError:
   from urlparse import urlparse
   from urllib import urlopen
