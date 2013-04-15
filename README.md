@@ -17,7 +17,7 @@ This is the simplest way to get the BitcoinTicker plugin. You can install Packag
 Go to the "Packages" directory and clone this repo:
 
 ```sh
-$ git clone https://github.com/pheuter/BitcoinTicker.git
+$ git clone git://github.com/pheuter/BitcoinTicker.git
 ```
 
 The "Packages" directory is located at:
