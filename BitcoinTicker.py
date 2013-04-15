@@ -63,13 +63,13 @@ class BitcoinTicker(sublime_plugin.EventListener):
       as well as the name of the exchange.
     """
 
-    settings = sublime.load_settings(__name__ + '.sublime-settings')
+    settings = sublime.load_settings('BitcoinTicker.sublime-settings')
     exchange = settings.get('exchange')
 
     if exchange == 1:
       url = 'http://data.mtgox.com/api/1/BTCUSD/ticker'
       req = urlparse(url)
-      resp = json.load(urlopen(req.geturl()))
+      resp = json.loads(urlopen(req.geturl()).read().decode('utf-8'))
 
       exchange_name = 'Mt.Gox'
       btc_in_usd = float(resp['return']['last']['value'])
@@ -77,10 +77,13 @@ class BitcoinTicker(sublime_plugin.EventListener):
     elif exchange == 2:
       url = 'https://api.bitfloor.com/ticker/1'
       req = urlparse(url)
-      resp = json.load(urlopen(req.geturl()))
+      resp = json.loads(urlopen(req.geturl()).read().decode('utf-8'))
 
       exchange_name = 'Bitfloor'
       btc_in_usd = float(resp['price'])
+
+    else:
+      return
 
     return (btc_in_usd, exchange_name)
 
