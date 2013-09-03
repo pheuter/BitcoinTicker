@@ -58,6 +58,7 @@ class BitcoinTicker(sublime_plugin.EventListener):
       Exchanges:
         1 - Mt.Gox
         2 - Bitfloor
+        3 - Bitstamp
 
       Returns a tuple consisting of the current exchange rate of 1 bitcoin in USD
       as well as the name of the exchange.
@@ -81,6 +82,14 @@ class BitcoinTicker(sublime_plugin.EventListener):
 
       exchange_name = 'Bitfloor'
       btc_in_usd = float(resp['price'])
+
+    elif exchange == 3:
+      url = 'https://www.bitstamp.net/api/ticker/'
+      req = urlparse(url)
+      resp = json.loads(urlopen(req.geturl()).read().decode('utf-8'))
+
+      exchange_name = 'Bitstamp'
+      btc_in_usd = float(resp['last'])
 
     else:
       return

@@ -8,6 +8,7 @@
 
         1 - Mt.Gox
         2 - Bitfloor
+        3 - Bitstamp
 
     */
 
@@ -26,6 +27,6 @@
         13.303 BTC
 
     */
-   
+
     "convert_strings": false
 }
